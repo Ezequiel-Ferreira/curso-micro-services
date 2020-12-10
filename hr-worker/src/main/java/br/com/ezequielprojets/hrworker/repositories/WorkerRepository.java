@@ -1,4 +1,4 @@
-package br.com.ezequielprojets.hrworker.repository;
+package br.com.ezequielprojets.hrworker.repositories;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
