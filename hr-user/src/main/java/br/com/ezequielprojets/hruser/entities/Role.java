@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_role")
 public class Role implements Serializable{
@@ -22,6 +24,7 @@ public class Role implements Serializable{
 	private Long Id;
 	
 	private String roleName;
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
 	private Set<User> users = new HashSet<>();
 
@@ -51,7 +54,7 @@ public class Role implements Serializable{
 		this.roleName = roleName;
 	}
 	
-
+	@JsonIgnore
 	public Set<User> getUsers() {
 		return users;
 	}
