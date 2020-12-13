@@ -11,7 +11,7 @@ import br.com.ezequielprojets.hrpayroll.feignclients.WorkerFeignClient;
 public class PaymentService {
 
 	@Autowired
-	private WorkerFeignClient workerFeingClient; 
+	private WorkerFeignClient workerFeingClient;
 	
 	public Payment getPayment(long workerId, int days) {
 		
