@@ -20,7 +20,7 @@ public class UserResource {
 	@GetMapping(value = "/search")
 	public ResponseEntity<User> getByEmail(@RequestParam String email) {
 		try {
-			User user = service.getByEmail(email);
+			User user = (User) service.loadUserByUsername(email);
 			return new ResponseEntity<>(user, HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
