@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.ezequielprojets.hroauth.entities.User;
@@ -17,6 +18,9 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private UserFeignClient userFeignClient;
+	
+	@Autowired
+	private BCryptPasswordEncoder passEn;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,9 +28,11 @@ public class UserService implements UserDetailsService {
 
 		if (user == null) {
 			logger.error("Email not found" + username);
+			
 			throw new UsernameNotFoundException("Email not found");
 		}
-		logger.info("Email found: " + username);
+		final String a = this.passEn.encode("123");
+		logger.info("Email found: " + username+ "pass: " + a);
 		return user;
 	}
 
